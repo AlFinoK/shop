@@ -2,8 +2,8 @@
 
 <template>
 	<section class="flex justify-between">
-		<LayoutSidebar />
 		<LayoutContent />
+		<LayoutSidebar />
 	</section>
 </template>
 

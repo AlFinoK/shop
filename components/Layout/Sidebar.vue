@@ -1,10 +1,12 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { links } from './menu.data'
+</script>
 
 <template>
 	<aside class="w-1/4 h-full min-h-screen px-10 py-8 bg-gray-300">
 		<NuxtLink
 			class="flex justify-center mb-10"
-			to="/logo">
+			to="/">
 			<NuxtImg
 				src="/logo.svg"
 				alt="logo"
@@ -12,84 +14,16 @@
 		</NuxtLink>
 		<nav class="flex flex-col gap-4">
 			<NuxtLink
-				class="w-min link inline-flex gap-4 items-center"
-				to="/">
+				class="w-min link inline-flex gap-2 items-center"
+				:to="link.to"
+				v-for="link in links"
+				:key="link.text">
 				<NuxtImg
-					src="/home.svg"
+					:src="link.imgSrc"
 					fit="contain"
-					alt="home link"
+					:alt="link.alt"
 					width="20" />
-				<span>Home</span>
-			</NuxtLink>
-			<NuxtLink
-				class="w-min link inline-flex gap-4 items-center"
-				to="/products">
-				<NuxtImg
-					src="/products.svg"
-					fit="contain"
-					alt="products link"
-					width="20" />
-				<span>Products</span>
-			</NuxtLink>
-			<NuxtLink
-				class="w-min link inline-flex gap-4 items-center"
-				to="/payments">
-				<NuxtImg
-					src="/payments.svg"
-					fit="contain"
-					alt="payments link"
-					width="20" />
-				<span>Payments</span>
-			</NuxtLink>
-			<NuxtLink
-				class="w-min link inline-flex gap-4 items-center"
-				to="/orders">
-				<NuxtImg
-					src="/orders.svg"
-					fit="contain"
-					alt="orders link"
-					width="20" />
-				<span>Orders</span>
-			</NuxtLink>
-			<NuxtLink
-				class="w-min link inline-flex gap-4 items-center"
-				to="/customers">
-				<NuxtImg
-					src="/customers.svg"
-					fit="contain"
-					alt="customers link"
-					width="20" />
-				<span>Customers</span>
-			</NuxtLink>
-			<NuxtLink
-				class="w-min link inline-flex gap-4 items-center"
-				to="/feedback">
-				<NuxtImg
-					src="/feedback.svg"
-					fit="contain"
-					alt="feedback link"
-					width="20" />
-				<span>Feedback</span>
-			</NuxtLink>
-			<NuxtLink
-				class="w-min link inline-flex gap-4 items-center"
-				to="/settings">
-				<NuxtImg
-					src="/settings.svg"
-					fit="contain"
-					alt="settings link"
-					width="20" />
-				<span>Settings</span>
-			</NuxtLink>
-			<NuxtLink
-				class="w-min link inline-flex gap-4 items-center"
-				to="/help">
-				<NuxtImg
-					src="/help.svg"
-					fit="contain"
-					alt="help link"
-					width="20" />
-				<span>Help</span>
+				<span>{{ link.text }}</span>
 			</NuxtLink>
 		</nav>
 	</aside>
