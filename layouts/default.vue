@@ -2,8 +2,8 @@
 
 <template>
 	<section class="flex justify-between">
-		<LayoutContent />
-		<LayoutSidebar />
+		<NuxtPage />
+		<Sidebar />
 	</section>
 </template>
 

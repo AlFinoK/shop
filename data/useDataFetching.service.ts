@@ -1,6 +1,6 @@
 import { ref } from 'vue'
 import axios from 'axios'
-import type { ICard } from './interfaces'
+import type { ICard } from '../types/interfaces'
 
 export default function useDataFetching(url: string) {
 	const data = ref<ICard[]>([])
