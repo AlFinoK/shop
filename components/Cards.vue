@@ -1,18 +1,25 @@
-<script setup>
+<script setup lang="ts">
 import { onMounted } from 'vue'
-import useDataFetching from '@/data/useDataFetching.service'
-import { baseApiUrl } from '@/consts/api'
+import { storeToRefs } from 'pinia'
+import { useProductStore } from '@/store/product.store'
 import Card from '@/components/Card.vue'
 
-const { data, loading, fetchData } = useDataFetching(`${baseApiUrl}products/`)
-onMounted(fetchData)
+const productStore = useProductStore()
+const { loading, error } = storeToRefs(productStore)
+
+const fetchProducts = productStore.fetchProducts
+
+onMounted(fetchProducts)
 </script>
 
 <template>
-	<div class="flex flex-wrap gap-4 justify-center">
-		<div v-if="loading">Loading...</div>
-		<Card
-			v-else-if="data"
-			:data="data" />
+	<div class="flex flex-wrap gap-8 justify-center">
+		<UiLoader v-if="loading" />
+		<Card />
+		<div
+			class="text-red-500"
+			v-if="error">
+			No products available
+		</div>
 	</div>
 </template>

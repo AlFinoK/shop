@@ -1,5 +1,5 @@
 <script setup></script>
 
 <template>
-	<div class="filters">filters</div>
+	<div class="mb-[60px]">filters</div>
 </template>

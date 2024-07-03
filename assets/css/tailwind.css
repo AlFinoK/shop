@@ -56,5 +56,6 @@
 	}
 	body {
 		@apply bg-background text-foreground;
+		background-image: linear-gradient(89.5deg, rgb(242, 250, 255) 0.4%, rgb(212, 218, 226) 100.3%);
 	}
 }

@@ -1,13 +1,13 @@
 export interface ILinks {
 	to: string
 	imgSrc: string
-	alt: string
-	text: string
+	alt?: string
+	text?: string
 }
 
-export interface ICard {
+export interface IProduct {
 	id: number
-	title?: string
+	title: string
 	price?: number
 	description?: string
 	category?: string

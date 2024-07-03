@@ -11,9 +11,11 @@
 	},
 	"dependencies": {
 		"@nuxt/image": "^1.7.0",
+		"@pinia/nuxt": "^0.5.1",
 		"@types/vue": "^2.0.0",
 		"axios": "^1.7.2",
 		"nuxt": "^3.12.2",
+		"pinia": "^2.1.7",
 		"tailwind-merge": "^2.3.0",
 		"tailwindcss-animate": "^1.0.7"
 	},
