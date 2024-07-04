@@ -1,5 +1,0 @@
-<script setup></script>
-
-<template>
-	<div class="mb-[60px]">filters</div>
-</template>
