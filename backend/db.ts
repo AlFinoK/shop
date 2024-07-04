@@ -8,7 +8,7 @@ const MONGODB_URI =
 	'mongodb+srv://AlFino:nikita0705@alfino.wle3hgs.mongodb.net/?retryWrites=true&w=majority&appName=AlFino'
 
 mongoose
-	.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+	.connect(MONGODB_URI)
 	.then(() => console.log('Connected to MongoDB'))
 	.catch((err) => console.error('Failed to connect to MongoDB', err))
 

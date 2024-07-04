@@ -1,21 +1,17 @@
 import express from 'express'
-import mongoose from 'mongoose'
 import dotenv from 'dotenv'
+import './db'
+import userRoutes from './routes/userRoutes'
 
 dotenv.config()
 
 const app = express()
-const PORT = process.env.PORT || 3000
-const MONGODB_URI =
-	process.env.MONGODB_URI ||
-	'mongodb+srv://AlFino:nikita0705@alfino.wle3hgs.mongodb.net/?retryWrites=true&w=majority&appName=AlFino'
-
-mongoose
-	.connect(MONGODB_URI)
-	.then(() => console.log('Connected to MongoDB'))
-	.catch((err) => console.error('Failed to connect to MongoDB', err))
+const PORT = process.env.PORT || 3001
 
 app.use(express.json())
+
+// Use user routes
+app.use('/api', userRoutes)
 
 app.get('/', (req, res) => {
 	res.send('Hello, World!')
