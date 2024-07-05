@@ -4,6 +4,8 @@ export interface ILinks {
 	alt?: string
 	text?: string
 	quantity?: boolean
+	cartItems?: boolean
+	favItems?: boolean
 }
 
 export interface IProduct {

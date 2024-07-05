@@ -6,7 +6,6 @@ export const links: ILinks[] = [
 		imgSrc: '/home.svg',
 		alt: 'home link',
 		text: 'Home',
-		quantity: false,
 	},
 
 	{
@@ -14,7 +13,6 @@ export const links: ILinks[] = [
 		imgSrc: '/products.svg',
 		alt: 'products link',
 		text: 'Products',
-		quantity: false,
 	},
 
 	{
@@ -22,7 +20,7 @@ export const links: ILinks[] = [
 		imgSrc: '/favorites.svg',
 		alt: 'favorites link',
 		text: 'Favorites',
-		quantity: false,
+		favItems: true,
 	},
 
 	{
@@ -30,6 +28,6 @@ export const links: ILinks[] = [
 		imgSrc: '/cart.svg',
 		alt: 'cart link',
 		text: 'Cart',
-		quantity: true,
+		cartItems: true,
 	},
 ]

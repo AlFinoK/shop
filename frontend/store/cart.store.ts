@@ -3,10 +3,8 @@ import { ref, computed } from 'vue'
 import type { IProduct } from '@/types/interfaces'
 
 export const useCartStore = defineStore('cart', () => {
-	// Состояние корзины
 	const cart = ref<{ product: IProduct; quantity: number }[]>([])
 
-	// Добавление товара в корзину
 	const addToCart = (product: IProduct) => {
 		const item = cart.value.find((p) => p.product.id === product.id)
 		if (item) {
@@ -16,17 +14,14 @@ export const useCartStore = defineStore('cart', () => {
 		}
 	}
 
-	// Удаление товара из корзины
 	const removeFromCart = (productId: number) => {
 		cart.value = cart.value.filter((item) => item.product.id !== productId)
 	}
 
-	// Очистка корзины
 	const clearCart = (): void => {
 		cart.value = []
 	}
 
-	// Увеличение количества товара в корзине
 	const increaseQuantity = (product: IProduct) => {
 		const item = cart.value.find((p) => p.product.id === product.id)
 		if (item) {
@@ -34,7 +29,6 @@ export const useCartStore = defineStore('cart', () => {
 		}
 	}
 
-	// Уменьшение количества товара в корзине
 	const decreaseQuantity = (product: IProduct) => {
 		const item = cart.value.find((p) => p.product.id === product.id)
 		if (item) {
@@ -46,16 +40,13 @@ export const useCartStore = defineStore('cart', () => {
 		}
 	}
 
-	// Получение количества товара в корзине
 	const getQuantity = (product: IProduct) => {
 		const item = cart.value.find((p) => p.product.id === product.id)
 		return item ? item.quantity : 0
 	}
 
-	// Количество товаров в корзине
 	const cartItems = computed(() => cart.value.length)
 
-	// Общая сумма корзины
 	const cartTotal = computed(() => cart.value.reduce((total, item) => total + item.product.price * item.quantity, 0))
 
 	return {

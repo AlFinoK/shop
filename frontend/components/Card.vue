@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useProductStore } from '@/store/product.store'
 import { useCartStore } from '@/store/cart.store'
-import type { IProduct } from '~/types/interfaces'
+import type { IProduct } from '@/types/interfaces'
 
 const productStore = useProductStore()
 const cartStore = useCartStore()
@@ -25,7 +25,7 @@ onMounted(() => {
 		:key="product.id">
 		<div class="p-4 flex flex-col items-center relative">
 			<NuxtLink
-				to="/"
+				:to="`/products/${product.id}`"
 				class="img">
 				<span class="bg-green-100 absolute top-5 left-5 py-1 px-2 text-sm">
 					{{ product.category }}
@@ -38,24 +38,29 @@ onMounted(() => {
 					:src="product.image"
 					alt="good img" />
 			</NuxtLink>
-			<h4 class="text-sm mb-2 min-h-[90px] w-[250px] text-center">
+			<h4 class="text-sm mb-2 min-h-[70px] w-[250px] text-center">
 				{{ product.title }}
 			</h4>
-			<div class="flex items-center justify-between w-full px-6">
+			<div class="flex flex-col items-center justify-between w-full px-6">
 				<p
 					:class="{
 						'text-green-500': product.price !== undefined,
 						'text-gray-500': product.price == undefined,
 					}"
-					class="text-start text-[1rem]">
+					class="text-start text-[1.5rem] mb-3">
 					{{ product.price !== undefined ? `${product.price}$` : 'No price'.toUpperCase() }}
 				</p>
-				<button
-					class="px-6 py-1 uppercase bg-green-400 text-white hover:bg-green-500"
-					@click="addToCart(product)"
-					:disabled="product.price === undefined">
-					add to cart
-				</button>
+				<div class="flex gap-3">
+					<button
+						class="px-3 rounded-sm py-1 uppercase bg-green-400 text-white hover:bg-green-500"
+						@click="addToCart(product)"
+						:disabled="product.price === undefined">
+						add to cart
+					</button>
+					<button class="px-3 rounded-sm py-1 uppercase bg-pink-400 text-white hover:bg-pink-600">
+						add to favorite
+					</button>
+				</div>
 			</div>
 		</div>
 	</div>

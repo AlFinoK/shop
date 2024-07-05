@@ -16,7 +16,7 @@
 				<NuxtLink
 					to="/products"
 					class="btn border border-solid border-green-500 rounded-md px-5 py-3"
-					>Show products</NuxtLink
+					>SHOW PRODUCTS</NuxtLink
 				>
 			</div>
 			<div>

@@ -68,8 +68,15 @@ const removeFromCart = (product) => {
 			</div>
 		</div>
 
-		<div v-else>
-			<p class="text-center text-[48px]">Your cart is empty</p>
+		<div
+			class="flex items-center flex-col gap-5"
+			v-else>
+			<p class="text-center text-[36px]">Your cart is empty</p>
+			<NuxtLink
+				to="/products"
+				class="link border border-solid border-green-500 rounded-md px-5 py-3 text-green-500"
+				>RETURN TO PRODUCTS</NuxtLink
+			>
 		</div>
 
 		<div class="flex justify-end relative">
@@ -96,5 +103,9 @@ const removeFromCart = (product) => {
 
 .btn-quantity {
 	@apply text-xl rounded-full border border-slate-300 w-[50px] h-[50px];
+}
+
+.link:hover {
+	@apply underline;
 }
 </style>

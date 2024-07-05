@@ -4,8 +4,7 @@ import { links } from '@/data/menu.data'
 import { useCartStore } from '@/store/cart.store'
 const cartStore = useCartStore()
 
-const cartItems = computed(() => cartStore.cartItems)
-const cartTotal = computed(() => cartStore.cartTotal)
+const { cart } = storeToRefs(cartStore)
 </script>
 
 <template>
@@ -22,10 +21,16 @@ const cartTotal = computed(() => cartStore.cartTotal)
 				width="26" />
 			<span class="text-[.9rem]">{{ link.text }}</span>
 			<span
-				v-if="link.quantity"
-				class="w-[20px] h-[20px] rounded-full border border-white absolute top-[-6px] left-[-6px] text-white flex items-center justify-center text-[12px]"
-				>{{ cartItems }}</span
+				v-for="item in cart"
+				v-if="link.cartItems"
+				class="item"
+				>{{ item.quantity }}</span
 			>
+			<!-- <span
+				v-if="link.favItems"
+				class="item"
+				>0</span
+			> -->
 		</NuxtLink>
 	</nav>
 </template>
@@ -35,5 +40,9 @@ const cartTotal = computed(() => cartStore.cartTotal)
 	@apply underline;
 	text-decoration: underline 1px solid #000;
 	text-underline-offset: 2px;
+}
+
+.item {
+	@apply w-[20px] h-[20px] rounded-full border border-white absolute top-[-6px] left-[-6px] text-white flex items-center justify-center text-[12px];
 }
 </style>
