@@ -1,12 +1,17 @@
 <script setup lang="ts">
 import { useProductStore } from '@/store/product.store'
 import { useCartStore } from '@/store/cart.store'
+import type { IProduct } from '~/types/interfaces'
+
 const productStore = useProductStore()
 const cartStore = useCartStore()
 
-const products = computed(() => productStore.products)
-const cartItems = computed(() => cartStore.cartItems)
-const cartTotal = computed(() => cartStore.cartTotal)
+const { products } = storeToRefs(productStore)
+const { cart, cartItems, cartTotal } = storeToRefs(cartStore)
+
+const addToCart = (product: IProduct) => {
+	cartStore.addToCart(product)
+}
 
 onMounted(() => {
 	productStore.fetchProducts()
@@ -33,16 +38,22 @@ onMounted(() => {
 					:src="product.image"
 					alt="good img" />
 			</NuxtLink>
-			<h4 class="text-sm mb-2 min-h-[40px] w-[250px] text-center">
+			<h4 class="text-sm mb-2 min-h-[90px] w-[250px] text-center">
 				{{ product.title }}
 			</h4>
 			<div class="flex items-center justify-between w-full px-6">
-				<p class="text-[1rem] text-green-500 text-start">
-					{{ `${product.price}$` }}
+				<p
+					:class="{
+						'text-green-500': product.price !== undefined,
+						'text-gray-500': product.price == undefined,
+					}"
+					class="text-start text-[1rem]">
+					{{ product.price !== undefined ? `${product.price}$` : 'No price'.toUpperCase() }}
 				</p>
 				<button
 					class="px-6 py-1 uppercase bg-green-400 text-white hover:bg-green-500"
-					@click="cartStore.addToCart(product)">
+					@click="addToCart(product)"
+					:disabled="product.price === undefined">
 					add to cart
 				</button>
 			</div>

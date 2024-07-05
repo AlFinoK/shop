@@ -14,20 +14,23 @@ const defaultVal: IData = {
 	error: null,
 }
 
-export const useProductStore = defineStore('product', {
-	state: () => defaultVal,
-	actions: {
-		async fetchProducts(): Promise<void> {
-			this.loading = true
-			this.error = null
-			try {
-				const res = await axios.get<IProduct[]>(`${baseApiUrl}products/`)
-				this.products = res.data
-			} catch (error: any) {
-				this.error = error.message || 'Failed to fetch products'
-			} finally {
-				this.loading = false
-			}
-		},
-	},
+export const useProductStore = defineStore('product', () => {
+	const products = ref<IProduct[]>([])
+	const loading = ref(false)
+	const error = ref<string | null>(null)
+
+	const fetchProducts = async (): Promise<void> => {
+		loading.value = true
+		error.value = null
+		try {
+			const res = await axios.get<IProduct[]>(`${baseApiUrl}products/`)
+			products.value = res.data
+		} catch (error: any) {
+			error.value = error.message || 'Failed to fetch products'
+		} finally {
+			loading.value = false
+		}
+	}
+
+	return { products, loading, error, fetchProducts }
 })
